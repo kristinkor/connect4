@@ -8,10 +8,7 @@ public class Connect4Service {
     public WinnerStatus getWinner(String moves) {
 
         char[][] grid = toGrid(moves);
-        char winner = checkWin(grid);
-        int[] winPositions = {};  // to implement
-
-        return new WinnerStatus(winPositions, winner);
+        return checkWin(grid);
     }
 
     public char[][] toGrid(java.lang.String moves) {
@@ -49,38 +46,39 @@ public class Connect4Service {
 
     }
 
-    public static char checkWin(char[][] board) {
-        final int HEIGHT = board.length;
-        final int WIDTH = board[0].length;
-        final char EMPTY_SLOT = 'N';
+    public static WinnerStatus checkWin(char[][] board) {
+        final int height = board.length;
+        final int width = board[0].length;
+        final char nChar = 'N';
         int[][] winPositions = new int[4][4];
 
-        for (int r = 0; r < HEIGHT; r++) { // iterate rows, bottom to top
-            for (int c = 0; c < WIDTH; c++) { // iterate columns, left to right
+        for (int r = 0; r < height; r++) { // iterate rows, bottom to top
+            for (int c = 0; c < width; c++) { // iterate columns, left to right
                 char player = board[r][c];
-                if (player == EMPTY_SLOT)
+                if (player == nChar) {
                     continue; // don't check empty slots
+                }
 
-                if (c + 3 < WIDTH &&
+                if (c + 3 < width &&
                         player == board[r][c + 1] && // look right
                         player == board[r][c + 2] &&
                         player == board[r][c + 3]) {
                     winPositions = new int[][]{{r, c}, {r, c + 1}, {r, c + 2}, {r, c + 3}};
-                    return player;
+                    return new WinnerStatus(winPositions, player);
                 }
-                if (r + 3 < HEIGHT) {
+                if (r + 3 < height) {
                     if (player == board[r + 1][c] && // look up
                             player == board[r + 2][c] &&
                             player == board[r + 3][c]) {
                         winPositions = new int[][]{{r, c}, {r + 1, c}, {r + 2, c}, {r + 3, c}};
-                        return player;
+                        return new WinnerStatus(winPositions, player);
                     }
-                    if (c + 3 < WIDTH &&
+                    if (c + 3 < width &&
                             player == board[r + 1][c + 1] && // look up & right
                             player == board[r + 2][c + 2] &&
                             player == board[r + 3][c + 3]) {
                         winPositions = new int[][]{{r, c}, {r + 1, c + 1}, {r + 2, c + 2}, {r + 3, c + 3}};
-                        return player;
+                        return new WinnerStatus(winPositions, player);
                     }
 
                     if (c - 3 >= 0 &&
@@ -88,12 +86,12 @@ public class Connect4Service {
                             player == board[r + 2][c - 2] &&
                             player == board[r + 3][c - 3]) {
                         winPositions = new int[][]{{r, c}, {r + 1, c - 1}, {r + 2, c - 2}, {r + 3, c - 3}};
-                        return player;
+                        return new WinnerStatus(winPositions, player);
                     }
                 }
             }
         }
-        return EMPTY_SLOT; // no winner found
+        return new WinnerStatus(new int[0][0], nChar); // no winner found
     }
 
 

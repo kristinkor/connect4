@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WinnerStatus {
-    private int[] position;
+    private int[][] position;
     private char whoWon;
 
-    public WinnerStatus(int[] position, char whoWon) {
+    public WinnerStatus(int[][] position, char whoWon) {
         this.position = position;
         this.whoWon = whoWon;
     }
