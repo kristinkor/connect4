@@ -22,8 +22,12 @@ public class WinnerStatus {
         return map;
     }
 
-    boolean isWinner() {
+    private boolean isWinner() {
         return whoWon == 'X' || whoWon == 'O';
+    }
+
+    char getWhoWon() {
+        return whoWon;
     }
 
     int[] getSingleIndices() {
