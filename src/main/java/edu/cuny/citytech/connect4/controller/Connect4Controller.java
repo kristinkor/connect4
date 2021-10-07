@@ -18,12 +18,6 @@ public class Connect4Controller {
 
     @GetMapping("connect4")
     public Map<String, Object> isWinner(@RequestParam(defaultValue = "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN") String moves) {
-        //Map<String, Object> map = new HashMap<>();
-        //var status = new WinnerStatus.getWinner(moves);
-//        map.put("isWinner",true);
-//        map.put("position", new int []{1,2,3});
-//        map.put("whoWon", "X");
-//        return map;
-          return connect4Service.getWinner(moves).toMap();
+        return connect4Service.getWinnerStatus(moves).toMap();
     }
 }

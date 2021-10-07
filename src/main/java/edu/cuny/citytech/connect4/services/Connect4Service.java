@@ -5,13 +5,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Connect4Service {
-    public WinnerStatus getWinner(String moves) {
 
+    public WinnerStatus getWinnerStatus(String moves) {
         char[][] grid = toGrid(moves);
+        printGrid(grid);
         return checkWin(grid);
     }
 
-    public char[][] toGrid(java.lang.String moves) {
+    private char[][] toGrid(String moves) {
         int l = moves.length();
         int k = 0, row, column;
         row = 6;
@@ -31,22 +32,22 @@ public class Connect4Service {
                 k++;
             }
         }
+        return s;
+    }
 
-        // Printing the grid
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < column; j++) {
-                if (s[i][j] == 0) {
+    private void printGrid(char[][] grid) {
+        for (char[] chars : grid) {
+            for (char aChar : chars) {
+                if (aChar == 0) {
                     break;
                 }
-                System.out.print(s[i][j]);
+                System.out.print(aChar);
             }
             System.out.println("");
         }
-        return s;
-
     }
 
-    public static WinnerStatus checkWin(char[][] board) {
+    private WinnerStatus checkWin(char[][] board) {
         final int height = board.length;
         final int width = board[0].length;
         final char nChar = 'N';
@@ -93,6 +94,4 @@ public class Connect4Service {
         }
         return new WinnerStatus(new int[0][0], nChar); // no winner found
     }
-
-
 }
