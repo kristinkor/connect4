@@ -13,7 +13,7 @@ public class T1_GetWinner {
     @Test
     @DisplayName("Test horizontal")
     void T1_GetWinnerHorizontal() {
-        String winningPosition = "XXXXNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN";
+        String winningPosition = "XXXXNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN";
         Connect4Service connect4Service = new Connect4Service();
         var winnerStatus = connect4Service.getWinnerStatus(winningPosition);
         var actualIndices = winnerStatus.getSingleIndices();
@@ -28,6 +28,16 @@ public class T1_GetWinner {
     @Test
     @DisplayName("Test vertical")
     public void T1_GetWinnerVertical() {
+        String winningPosition = "XNNNNNNXNNNNNNXNNNNNNXNNNNNNNNNNNNNNNNNNNN";
+        Connect4Service connect4Service = new Connect4Service();
+        var winnerStatus = connect4Service.getWinnerStatus(winningPosition);
+        var actualIndices = winnerStatus.getSingleIndices();
+        var expectedIndices = new int[]{0, 7, 14, 21};
+        char actualWhoWon = winnerStatus.getWhoWon();
+        char expectedWhoWon = 'X';
+
+        assertEquals(expectedWhoWon, actualWhoWon);
+        assertArrayEquals(expectedIndices, actualIndices);
 
     }
 
