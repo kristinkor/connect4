@@ -22,7 +22,7 @@ public class WinnerStatus {
         return map;
     }
 
-    private boolean isWinner() {
+    boolean isWinner() {
         return whoWon == 'X' || whoWon == 'O';
     }
 
