@@ -1,7 +1,9 @@
 package edu.cuny.citytech.connect4.services;
 
 import edu.cuny.citytech.connect4.model.TicTacToeWinnerStatus;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TicTacToeService {
 
     public TicTacToeWinnerStatus getTicTacToeWinnerStatus(String moves) {
