@@ -51,12 +51,12 @@ public class Connect4Service {
         final int height = board.length;
         final int width = board[0].length;
         final char nChar = 'N';
-        int[][] winPositions = new int[4][4];
+        int[][] winPositions;
 
         for (int r = 0; r < height; r++) { // iterate rows, bottom to top
             for (int c = 0; c < width; c++) { // iterate columns, left to right
                 char player = board[r][c];
-                if (player == nChar) {
+                if (player != 'X' && player != 'O') {
                     continue; // don't check empty slots
                 }
 
