@@ -45,6 +45,7 @@ public class Connect4Service {
             }
             System.out.println("");
         }
+        System.out.println();
     }
 
     private WinnerStatus checkWin(char[][] board) {
