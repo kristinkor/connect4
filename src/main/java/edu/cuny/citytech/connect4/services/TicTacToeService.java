@@ -66,8 +66,8 @@ public class TicTacToeService {
         // diagonal left bottom - right top
         if (str[0][2] == str[1][1] && str[1][1] == str[2][0]
                 && str[0][2] != 'N') {
-            winner = str[0][0];
-            winPositions = new int[][]{{0,2}, {1,2}, {2,0}};
+            winner = str[0][2];
+            winPositions = new int[][]{{0,2}, {1,1}, {2,0}};
             return new TicTacToeWinnerStatus(winPositions, winner);
         }
         // returning the char X, O or empty ' ' if there were no winning combinations

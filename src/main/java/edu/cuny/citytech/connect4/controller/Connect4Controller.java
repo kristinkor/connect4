@@ -16,6 +16,7 @@ public class Connect4Controller {
 
     @Autowired
     Connect4Service connect4Service;
+    @Autowired
     TicTacToeService ticTacToeService;
 
     @GetMapping("connect4")
